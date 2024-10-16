@@ -1,3 +1,4 @@
+## INCOMPLETE ##
 import os
 path = 'files\\problem24'
 files = os.listdir(path)
