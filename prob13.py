@@ -17,13 +17,12 @@ output.append(top_str)
 
 for i in range(1, h - 2):
     line_str = ""
-    counter = 0
-    for _ in range(w):
-        if counter == 0 or counter == w - 1:
+    for i in range(w):
+        if i == 0 or i == w - 1:
             line_str += "#"
         else:
             line_str += " "
-        counter += 1
+            
     output.append(line_str)
 
 bottom_str = ""
@@ -36,4 +35,4 @@ if lines != output:
     for line in output:
         print(line)
 else:
-    print("Nothing to do.")
+    print("Nothing to do")
