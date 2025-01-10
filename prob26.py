@@ -6,6 +6,7 @@ for stat in plan:
     name, i_stat = stat.split(":")
     parsed_plan[name] = float(i_stat.rstrip("m/s"))
 
+# Preventing KeyErrors by assigning super high arbitary values
 if "Door" not in parsed_plan:
     parsed_plan["Door"] = 100000000
 
@@ -28,7 +29,6 @@ def simulate():
     flashlight_used = False
     door_used = False
 
-    shut_door = False
     while True:
         # Update Time
         t_str = "Time-"
@@ -90,12 +90,13 @@ def simulate():
             h_log.append(f"[door shut at {dist}]")
             door_used = True
         
+        # Animatronic interaction with door
         if a_pos >= parsed_plan["Door"] and door_used and block_count == 3:
             a_pos = parsed_plan["Door"]
             a_log.append("[door, stopped]")
             blocked = True
 
-        # To fix - door edgecase
+        # Flashlight functionality
         if h_pos >= parsed_plan["Flashlight"]:
             if not flashlight_used and not h_pos > parsed_plan["Door"] >= a_pos:
                 dist = parsed_plan["Flashlight"]
